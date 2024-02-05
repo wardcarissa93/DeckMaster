@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DeckMaster.Models;
+using DeckMaster.ViewModels;
 
 namespace DeckMaster.Data
 {
@@ -17,5 +18,6 @@ namespace DeckMaster.Data
         {
             base.OnModelCreating(modelBuilder);
         }
+        public DbSet<DeckMaster.ViewModels.RoleVM> RoleVM { get; set; } = default!;
     }
 }

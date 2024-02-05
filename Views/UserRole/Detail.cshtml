@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DeckMaster.ViewModels.RoleVM>
+
+@{
+    ViewData["Title"] = "User Roles Detail";
+    string message = ViewBag.Message;
+}
+
+<h3 style="color:darkred;">@ViewBag.UserName</h3>
+
+@if (message.Length > 0)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
+<p>
+    @Html.ActionLink("Assign Roles"
+             , "Create"
+             , new { userName = ViewBag.UserName })
+</p>
+<div class="row">
+    <div class="col-sm-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <span style="color:darkred;">Role Name</span>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoleName)
+                        </td>
+                        <td>
+                            <form asp-controller="UserRole" asp-action="Delete" method="post">
+                                <input type="hidden" name="Email" value="@ViewBag.UserName" />
+                                <input type="hidden" name="RoleName" value="@item.RoleName" />
+                                <button type="submit" class="btn btn-danger" id="delete-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p><a href="/UserRole">Back to Users</a></p>
+    </div>
+</div>

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeckMaster.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240128232327_initialCreate")]
+    [Migration("20240205215556_initialCreate")]
     partial class initialCreate
     {
         /// <inheritdoc />
@@ -111,6 +111,20 @@ namespace DeckMaster.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("MyRegisteredUsers");
+                });
+
+            modelBuilder.Entity("DeckMaster.ViewModels.RoleVM", b =>
+                {
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("RoleVM");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

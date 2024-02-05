@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DeckMaster.ViewModels.UserVM>
+
+@{
+    ViewData["Title"] = "User Roles";
+}
+
+<div class="row">
+    <div class="col-sm-8 col-md-9 col-lg-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <span>Users</span>
+                    </th>
+                    <th>
+                        <span>
+                            <a asp-action="Create">Create New User Role</a>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Email</td>
+                        <td>
+                            @Html.ActionLink("View Roles"
+                                           , "Detail"
+                                           , new { userName = item.Email })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

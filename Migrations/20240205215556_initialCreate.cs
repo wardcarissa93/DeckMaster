@@ -92,6 +92,18 @@ namespace DeckMaster.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoleVM",
+                columns: table => new
+                {
+                    RoleId = table.Column<string>(type: "TEXT", nullable: false),
+                    RoleName = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleVM", x => x.RoleId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -258,6 +270,9 @@ namespace DeckMaster.Migrations
 
             migrationBuilder.DropTable(
                 name: "MyRegisteredUsers");
+
+            migrationBuilder.DropTable(
+                name: "RoleVM");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -110,6 +110,20 @@ namespace DeckMaster.Migrations
                     b.ToTable("MyRegisteredUsers");
                 });
 
+            modelBuilder.Entity("DeckMaster.ViewModels.RoleVM", b =>
+                {
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("RoleVM");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

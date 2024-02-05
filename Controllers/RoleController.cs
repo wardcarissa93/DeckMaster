@@ -34,11 +34,11 @@ namespace DeckMaster.Controllers
             {
                 RoleRepo roleRepo = new RoleRepo(_context);
 
-                bool isSuccess = roleRepo.CreateRole(roleVM.RoleName);
+                bool isSuccess = roleRepo.CreateRole(roleVM);
 
                 if (isSuccess)
                 {
-                    return RedirectToAction(nameof(Index), new { message = "Role deleted successfully." });                    
+                    return RedirectToAction(nameof(Index), new { message = "Role created successfully." });                    
                 }
                 else
                 {

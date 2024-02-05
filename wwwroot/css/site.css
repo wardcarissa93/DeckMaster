@@ -52,7 +52,30 @@ nav {
 }
 
 
-button {
+#login-submit, #registerSubmit, #shop-now {
     background-color: #6e0b14;
-    border: none;
+    border-color: #6e0b14;
+}
+
+#delete-button {
+    padding: 0 0.375em
+}
+
+a, h2, h3, th {
+    color: #8b0000;
+}
+
+#img-div {
+    text-align: right;
+    padding-top: 55px;
+    opacity: 0.08;
+}
+
+img {
+    max-width: 70%;
+}
+
+#welcome {
+    padding-top: 40px;
+    padding-left: 20px;
 }

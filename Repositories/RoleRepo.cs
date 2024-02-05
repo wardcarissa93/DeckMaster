@@ -12,12 +12,12 @@ namespace DeckMaster.Repositories
         public RoleRepo(ApplicationDbContext context)
         {
             this._context = context;
-            CreateInitialRole();
+            // CreateInitialRole();
         }
 
         public IEnumerable<RoleVM> GetAllRoles()
         {
-            return _context.Roles.Select(r => new RoleVM { RoleName = r.Name });
+            return _context.RoleVM.Select(r => new RoleVM { RoleId = r.RoleId, RoleName = r.RoleName });
         }
 
         public RoleVM GetRole(string roleName)
@@ -27,9 +27,9 @@ namespace DeckMaster.Repositories
             return role != null ? new RoleVM { RoleName = role.Name } : null;
         }
 
-        public bool CreateRole(string roleName)
+        public bool CreateRole(RoleVM roleVM)
         {
-            var normalizedRoleName = roleName.ToUpper();
+            var normalizedRoleName = roleVM.RoleName.ToUpper();
 
             if (_context.Roles.Any(r => r.NormalizedName == normalizedRoleName))
             {
@@ -39,9 +39,11 @@ namespace DeckMaster.Repositories
             _context.Roles.Add(new IdentityRole
             {
                 Id = normalizedRoleName,
-                Name = roleName,
+                Name = roleVM.RoleName,
                 NormalizedName = normalizedRoleName
             });
+
+            _context.RoleVM.Add(roleVM);
 
             _context.SaveChanges();
 
@@ -57,15 +59,15 @@ namespace DeckMaster.Repositories
             }), "Value", "Text");
         }
 
-        public void CreateInitialRole()
-        {
-            const string ADMIN = "Admin";
+        //public void CreateInitialRole()
+        //{
+        //    const string ADMIN = "Admin";
 
-            if (GetRole(ADMIN) == null)
-            {
-                CreateRole(ADMIN);
-            }
-        }
+        //    if (GetRole(ADMIN) == null)
+        //    {
+        //        CreateRole(ADMIN);
+        //    }
+        //}
 
         public bool DeleteRole(string roleName)
         {

@@ -8,6 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Images\BlackDeck.jpeg" />
+    <None Include="wwwroot\Images\CardSymbols.png" />
+    <None Include="wwwroot\Images\DeckMaster.png" />
+    <None Include="wwwroot\Images\DeckMasterGrey.png" />
+    <None Include="wwwroot\Images\DeckMasterW.png" />
+    <None Include="wwwroot\Images\DeckOfCards.png" />
+    <None Include="wwwroot\Images\FiveAces.jpg" />
+    <None Include="wwwroot\Images\PayPal.png" />
+    <None Include="wwwroot\Images\reCAPTCHA.png" />
+    <None Include="wwwroot\Images\reCAPTCHA2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />

@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Roles";
     string message = ViewBag.Message;
-    bool isSuccess = message.StartsWith("Role deleted ");
+    bool isSuccess = message.StartsWith("Role created ");
 }
 
-<h1>Roles</h1>
+<h3>Roles</h3>
 
 @if (!string.IsNullOrEmpty(message))
 {
@@ -16,11 +16,14 @@
 }
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Role</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.RoleName)
             </th>
@@ -31,6 +34,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleId)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.RoleName)
                 </td>
