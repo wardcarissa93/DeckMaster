@@ -2,11 +2,37 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
+@using Microsoft.AspNetCore.Http
+@{
+    var firstName = Context.Session.GetString("FirstName");
+    var helloLink = !string.IsNullOrEmpty(firstName) ? $"Hello {firstName}!" : "";
+}
+
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a  class="nav-link text-dark" style="color: #d9d9d9 !important; font-size: 1em !important;" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+            @if (firstName != null)
+            {
+                <a
+                    class="nav-link text-dark"
+                    asp-area="Identity"
+                    asp-page="/Account/Manage/Index"
+                    title="Manage"
+                    style="color:#d9d9d9 !important; font-size: 1em !important;"
+                >
+                    Hello, @firstName!
+                </a>
+            }
+            else
+            {
+                <a
+                    class="nav-link text-dark"
+                    asp-area="Identity"
+                    asp-page="/Account/Manage/Index"
+                    title="Manage"
+                ></a>
+            }
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

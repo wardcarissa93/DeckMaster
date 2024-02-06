@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositories\ProductRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\Images\BlackDeck.jpeg" />
     <None Include="wwwroot\Images\CardSymbols.png" />
     <None Include="wwwroot\Images\DeckMaster.png" />

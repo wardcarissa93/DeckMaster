@@ -1,5 +1,6 @@
 using DeckMaster.Data;
 using DeckMaster.Models;
+using DeckMaster.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SQLitePCL;
@@ -11,21 +12,37 @@ namespace DeckMaster.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+        private readonly MyRegisteredUserRepo _myRegisteredUserRepo;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, 
+                              ApplicationDbContext context,
+                              MyRegisteredUserRepo myRegisteredUserRepo)
         {
             _logger = logger;
             _context = context;
+            _myRegisteredUserRepo = myRegisteredUserRepo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            // Get the current user's email
+            string userEmail = User.Identity.Name;
+            // Get and store the user's first name in session
+            string firstName = _myRegisteredUserRepo.GetFirstNameByEmail(userEmail);
+            if (firstName != null)
+            {
+                HttpContext.Session.SetString("FirstName", firstName);
+            }
+
+
+            return View("Index", "3.55|CAD");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Shop()
         {
-            return View();
+            ProductRepo productRepo = new ProductRepo(_context);
+
+            return View(productRepo.GetAllProducts());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

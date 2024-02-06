@@ -1,4 +1,6 @@
 using DeckMaster.Data;
+using DeckMaster.Models;
+using DeckMaster.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +15,17 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<MyRegisteredUserRepo>();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+});
 
 var app = builder.Build();
+
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

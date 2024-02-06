@@ -12,7 +12,7 @@ namespace DeckMaster.Repositories
         public RoleRepo(ApplicationDbContext context)
         {
             this._context = context;
-            // CreateInitialRole();
+            CreateInitialRole();
         }
 
         public IEnumerable<RoleVM> GetAllRoles()
@@ -59,15 +59,20 @@ namespace DeckMaster.Repositories
             }), "Value", "Text");
         }
 
-        //public void CreateInitialRole()
-        //{
-        //    const string ADMIN = "Admin";
+        public void CreateInitialRole()
+        {
+            const string ADMIN = "Admin";
 
-        //    if (GetRole(ADMIN) == null)
-        //    {
-        //        CreateRole(ADMIN);
-        //    }
-        //}
+            if (GetRole(ADMIN) == null)
+            {
+                RoleVM admin = new RoleVM
+                {
+                    RoleId = ADMIN.Substring(0, 2),
+                    RoleName = ADMIN
+                };
+                CreateRole(admin);
+            }
+        }
 
         public bool DeleteRole(string roleName)
         {

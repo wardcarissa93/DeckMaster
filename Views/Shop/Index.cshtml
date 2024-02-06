@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DeckMaster.Models.Product>
+
+@{
+    ViewData["Title"] = "Products - Deck Master";
+}
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-lg-6"></div>
+                <div class="col-lg-6">
+                    <img src="~/Images/@item.ImageName" alt="Pack of cards" style="max-width: 100%;" />
+                    <div class=""
+                         style="color:#cc0000; font-size: 1.5em; text-align: center;">
+                        <span>$</span><span>@Html.DisplayFor(modelItem => item.Price)</span>
+                        <span id="currency">@Html.DisplayFor(modelItem => item.Currency)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-4"
+             style="padding-top: 20px;">
+            @Html.DisplayFor(modelItem => item.Description)
+        </div>
+        <div class="col-sm-4 d-none d-md-block"></div>
+    </div>
+    <hr />
+}

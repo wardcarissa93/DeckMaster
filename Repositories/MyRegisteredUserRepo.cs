@@ -26,5 +26,12 @@ namespace DeckMaster.Repositories
 
             return user?.FirstName + " " + user?.LastName;
         }
+
+        // Get the first name of a client by email
+        public string GetFirstNameByEmail(string email)
+        {
+            var user = _context.MyRegisteredUsers.FirstOrDefault(u => u.Email == email);
+            return user?.FirstName;
+        }
     }
 }
