@@ -13,14 +13,18 @@ namespace DeckMaster.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly MyRegisteredUserRepo _myRegisteredUserRepo;
+        private readonly IConfiguration _configuration;
+
 
         public HomeController(ILogger<HomeController> logger, 
                               ApplicationDbContext context,
-                              MyRegisteredUserRepo myRegisteredUserRepo)
+                              MyRegisteredUserRepo myRegisteredUserRepo,
+                              IConfiguration configuration)
         {
             _logger = logger;
             _context = context;
             _myRegisteredUserRepo = myRegisteredUserRepo;
+            _configuration = configuration;
         }
 
         public IActionResult Index()

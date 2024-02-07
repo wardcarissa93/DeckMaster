@@ -4,6 +4,8 @@
     ViewData["Title"] = "Register";
 }
 
+<script src="https://google.com/recaptcha/api.js"></script>
+
 <h2>@ViewData["Title"]</h2>
 
 <div class="row">
@@ -11,7 +13,7 @@
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
             <hr />
-            <div>Captcha goes here</div>
+            <div class="g-recaptcha" data-sitekey="@ViewData["SiteKey"]" style="padding-bottom: 15px;">Captcha goes her</div>
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email"
