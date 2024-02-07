@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DeckMaster.Models.IPN>
+
+@{
+    ViewData["Title"] = "Transactions - Deck Master";
+}
+
+<div class="" style="">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 style="color:darkred;">Transactions</h3>
+        </div>
+        <div class="col-sm-6">
+            <span class="d-flex justify-content-end">
+                <img src="~/Images/PayPal.png" alt="PayPal" style="max-width: 200px; padding-bottom: 10px;" />
+            </span>
+        </div>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="d-none d-lg-block">
+                @Html.DisplayNameFor(model => model.paymentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.create_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.payerFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.payerEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.paymentMethod)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="d-none d-lg-block">
+                    @Html.DisplayFor(modelItem => item.paymentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.payerFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.payerEmail)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.amount) <br />
+                    @Html.DisplayFor(modelItem => item.currency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.paymentMethod)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,14 +14,14 @@ namespace DeckMaster.Repositories
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return _context.Products.Select(r => new Product 
+            return _context.Products.Select(p => new Product 
                             { 
-                                ID = r.ID, 
-                                ProductName = r.ProductName,
-                                Description = r.Description,
-                                Price = r.Price,
-                                Currency = r.Currency,
-                                ImageName = r.ImageName
+                                ID = p.ID, 
+                                ProductName = p.ProductName,
+                                Description = p.Description,
+                                Price = p.Price,
+                                Currency = p.Currency,
+                                ImageName = p.ImageName
                             });
         }
     }

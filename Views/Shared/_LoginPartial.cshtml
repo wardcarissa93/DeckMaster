@@ -5,7 +5,7 @@
 @using Microsoft.AspNetCore.Http
 @{
     var firstName = Context.Session.GetString("FirstName");
-    var helloLink = !string.IsNullOrEmpty(firstName) ? $"Hello {firstName}!" : "";
+    // var helloLink = !string.IsNullOrEmpty(firstName) ? $"Hello {firstName}!" : "";
 }
 
 <ul class="navbar-nav">

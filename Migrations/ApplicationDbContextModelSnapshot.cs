@@ -84,7 +84,7 @@ namespace DeckMaster.Migrations
 
                     b.HasKey("paymentID");
 
-                    b.ToTable("IPNs");
+                    b.ToTable("IPN");
                 });
 
             modelBuilder.Entity("DeckMaster.Models.MyRegisteredUser", b =>

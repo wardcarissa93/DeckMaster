@@ -53,7 +53,7 @@ namespace DeckMaster.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IPNs",
+                name: "IPN",
                 columns: table => new
                 {
                     paymentID = table.Column<string>(type: "TEXT", nullable: false),
@@ -75,7 +75,7 @@ namespace DeckMaster.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IPNs", x => x.paymentID);
+                    table.PrimaryKey("PK_IPN", x => x.paymentID);
                 });
 
             migrationBuilder.CreateTable(
@@ -295,7 +295,7 @@ namespace DeckMaster.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "IPNs");
+                name: "IPN");
 
             migrationBuilder.DropTable(
                 name: "MyRegisteredUsers");

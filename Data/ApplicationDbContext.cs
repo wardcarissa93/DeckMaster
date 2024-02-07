@@ -14,6 +14,7 @@ namespace DeckMaster.Data
         }
         public DbSet<MyRegisteredUser> MyRegisteredUsers { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<IPN> Transactions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

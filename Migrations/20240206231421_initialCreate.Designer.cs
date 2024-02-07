@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeckMaster.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240206005056_initialCreate")]
+    [Migration("20240206231421_initialCreate")]
     partial class initialCreate
     {
         /// <inheritdoc />
@@ -87,7 +87,7 @@ namespace DeckMaster.Migrations
 
                     b.HasKey("paymentID");
 
-                    b.ToTable("IPNs");
+                    b.ToTable("IPN");
                 });
 
             modelBuilder.Entity("DeckMaster.Models.MyRegisteredUser", b =>
