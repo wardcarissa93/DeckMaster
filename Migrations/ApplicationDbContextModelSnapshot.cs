@@ -173,6 +173,7 @@ namespace DeckMaster.Migrations
             modelBuilder.Entity("DeckMaster.ViewModels.RoleVM", b =>
                 {
                     b.Property<string>("RoleId")
+                        .HasMaxLength(2)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RoleName")

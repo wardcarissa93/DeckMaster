@@ -42,13 +42,6 @@ namespace DeckMaster.Controllers
             return View("Index", "3.55|CAD");
         }
 
-        public IActionResult Shop()
-        {
-            ProductRepo productRepo = new ProductRepo(_context);
-
-            return View(productRepo.GetAllProducts());
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

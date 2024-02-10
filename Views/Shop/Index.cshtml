@@ -14,7 +14,7 @@
                     <img src="~/Images/@item.ImageName" alt="Pack of cards" style="max-width: 100%;" />
                     <div class=""
                          style="color:#cc0000; font-size: 1.5em; text-align: center;">
-                        <span>$</span><span>@Html.DisplayFor(modelItem => item.Price)</span>
+                        <span>$</span><span id="amount_@item.ID">@Html.DisplayFor(modelItem => item.Price)</span>
                         <span id="currency">@Html.DisplayFor(modelItem => item.Currency)</span>
                     </div>
                 </div>
@@ -24,7 +24,146 @@
              style="padding-top: 20px;">
             @Html.DisplayFor(modelItem => item.Description)
         </div>
-        <div class="col-sm-4 d-none d-md-block"></div>
+        <div class="col-sm-4 d-md-block">
+            <div class="buttons-div">
+                <a 
+                    id="add_@item.ID"
+                    class="nav-link text-dark btn btn-primary btn-sm" 
+                    onclick="addItem(@item.ID)" 
+                    style="background-color: #6e0b14; border-color: #6e0b14;color: #fff !important; width: 160px;"
+                >
+                    Add to Cart               
+                </a>
+                <a 
+                    id="remove_@item.ID" 
+                    class="nav-link text-dark btn btn-primary btn-sm" 
+                    onClick="removeItem(@item.ID)"
+                    style="background-color: #999999; border-color: #aaaaaa; color: #fff !important; width: 160px;"
+                >
+                    Remove from Cart
+                </a>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="text-align: center">
+                            Qty
+                        </th>
+                        <th style="text-align: center;">
+                            Amount
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">
+                            <span id="quantity_@item.ID">0</span>
+                        </td>
+                        <td style="text-align: center;">
+                            $<span id="totalAmount_@item.ID">0</span> CAD
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <hr />
 }
+
+<div class="row">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="col-sm-4 d-md-block" id="totals">
+            <div id="paypal-button-container">
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Items
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span id="summedQuantity">0</span>
+                        </td>
+                        <td>
+                            $<span id="summedAmount">0</span> CAD
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <button class="btn btn-primary"
+                    style="border-color: #6e0b14; background-color: #6e0b14;"
+                    asp-area=""
+                    asp-controller="Identity"
+                    asp-page="/Account/Login">
+                Login to Purchase
+            </button>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    function addItem(id) {
+        var amountElement = document.getElementById('amount_' + id);
+        var amount = parseFloat (amountElement.innerHTML);
+        var quantityElement = document.getElementById('quantity_' + id);
+        var quantity = parseInt(quantityElement.innerHTML) + 1;
+        var totalamountElement = document.getElementById('totalAmount_' + id);
+        var totalAmount = totalamountElement.innerHTML;
+
+        var totalAmountInt = (amount * quantity).toFixed(2);
+
+        totalamountElement.innerHTML = totalAmountInt;
+        quantityElement.innerHTML = quantity;
+
+        updateTotals();
+    }
+
+    function removeItem(id) {
+        var quantityElement = document.getElementById('quantity_' + id);
+        var quantity = parseInt(quantityElement.innerHTML);
+
+        if (quantity > 0) {
+            quantity--;
+            quantityElement.innerHTML = quantity;
+
+            var amountElement = document.getElementById('amount_' + id);
+            var amount = parseFloat(amountElement.innerHTML);
+            var totalAmountElement = document.getElementById('totalAmount_' + id);
+
+            var totalAmountInt = amount * quantity;
+            totalAmountInt = totalAmountInt.toFixed(2);
+
+            totalAmountElement.innerHTML = totalAmountInt;
+
+            updateTotals();
+        }
+    }
+
+    function updateTotals() {
+        var totalQuantity = 0;
+        var totalAmount = 0;
+
+        var items = document.querySelectorAll("[id^='totalAmount_']");
+        items.forEach(function (element) {
+            var totalAmountInt = parseFloat(element.innerHTML);
+            totalQuantity += parseInt(element.parentNode.parentNode.querySelector("[id^='quantity_']").innerHTML);
+            totalAmount += totalAmountInt;
+        });
+
+        document.getElementById('summedQuantity').innerHTML = totalQuantity;
+        document.getElementById('summedAmount').innerHTML = totalAmount.toFixed(2);
+    }
+</script>

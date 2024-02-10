@@ -114,7 +114,7 @@ namespace DeckMaster.Migrations
                 name: "RoleVM",
                 columns: table => new
                 {
-                    RoleId = table.Column<string>(type: "TEXT", nullable: false),
+                    RoleId = table.Column<string>(type: "TEXT", maxLength: 2, nullable: false),
                     RoleName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

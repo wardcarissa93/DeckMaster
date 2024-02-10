@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeckMaster.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240206231421_initialCreate")]
+    [Migration("20240208001405_initialCreate")]
     partial class initialCreate
     {
         /// <inheritdoc />
@@ -176,6 +176,7 @@ namespace DeckMaster.Migrations
             modelBuilder.Entity("DeckMaster.ViewModels.RoleVM", b =>
                 {
                     b.Property<string>("RoleId")
+                        .HasMaxLength(2)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RoleName")
