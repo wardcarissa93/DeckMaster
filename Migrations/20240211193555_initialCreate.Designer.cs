@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeckMaster.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240208001405_initialCreate")]
+    [Migration("20240211193555_initialCreate")]
     partial class initialCreate
     {
         /// <inheritdoc />
@@ -26,63 +26,48 @@ namespace DeckMaster.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("amount")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("cart")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("create_time")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("currency")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("custom")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("intent")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("payerCountryCode")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("payerEmail")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("payerFirstName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("payerID")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("payerLastName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("payerMiddleName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("payerStatus")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("paymentMethod")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("paymentState")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("paymentID");

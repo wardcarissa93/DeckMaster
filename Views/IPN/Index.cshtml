@@ -47,14 +47,16 @@
                     @Html.DisplayFor(modelItem => item.paymentID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.payerFirstName)
+                    @Html.DisplayFor(modelItem => item.create_time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.payerFirstName) @Html.DisplayFor(modelItem => item.payerLastName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.payerEmail)
                 </td>
                 <td>
-                    $@Html.DisplayFor(modelItem => item.amount) <br />
-                    @Html.DisplayFor(modelItem => item.currency)
+                    $@Html.DisplayFor(modelItem => item.amount) @Html.DisplayFor(modelItem => item.currency)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.paymentMethod)

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DeckMaster.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class UserRoleController : Controller
     {
         private readonly ApplicationDbContext _context;

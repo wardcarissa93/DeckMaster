@@ -57,21 +57,21 @@ namespace DeckMaster.Migrations
                 columns: table => new
                 {
                     paymentID = table.Column<string>(type: "TEXT", nullable: false),
-                    custom = table.Column<string>(type: "TEXT", nullable: false),
-                    cart = table.Column<string>(type: "TEXT", nullable: false),
-                    create_time = table.Column<string>(type: "TEXT", nullable: false),
-                    payerID = table.Column<string>(type: "TEXT", nullable: false),
-                    payerFirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    payerLastName = table.Column<string>(type: "TEXT", nullable: false),
-                    payerMiddleName = table.Column<string>(type: "TEXT", nullable: false),
-                    payerEmail = table.Column<string>(type: "TEXT", nullable: false),
-                    payerCountryCode = table.Column<string>(type: "TEXT", nullable: false),
-                    payerStatus = table.Column<string>(type: "TEXT", nullable: false),
-                    amount = table.Column<string>(type: "TEXT", nullable: false),
-                    currency = table.Column<string>(type: "TEXT", nullable: false),
-                    intent = table.Column<string>(type: "TEXT", nullable: false),
-                    paymentMethod = table.Column<string>(type: "TEXT", nullable: false),
-                    paymentState = table.Column<string>(type: "TEXT", nullable: false)
+                    custom = table.Column<string>(type: "TEXT", nullable: true),
+                    cart = table.Column<string>(type: "TEXT", nullable: true),
+                    create_time = table.Column<string>(type: "TEXT", nullable: true),
+                    payerID = table.Column<string>(type: "TEXT", nullable: true),
+                    payerFirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    payerLastName = table.Column<string>(type: "TEXT", nullable: true),
+                    payerMiddleName = table.Column<string>(type: "TEXT", nullable: true),
+                    payerEmail = table.Column<string>(type: "TEXT", nullable: true),
+                    payerCountryCode = table.Column<string>(type: "TEXT", nullable: true),
+                    payerStatus = table.Column<string>(type: "TEXT", nullable: true),
+                    amount = table.Column<string>(type: "TEXT", nullable: true),
+                    currency = table.Column<string>(type: "TEXT", nullable: true),
+                    intent = table.Column<string>(type: "TEXT", nullable: true),
+                    paymentMethod = table.Column<string>(type: "TEXT", nullable: true),
+                    paymentState = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
