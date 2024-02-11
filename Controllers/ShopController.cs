@@ -32,8 +32,6 @@ namespace DeckMaster.Controllers
             return View(productRepo.GetAllProducts());
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken] // Added for CSRF protection
         public IActionResult IPN(IPN IPN)
         {
             // Validate model state to prevent overposting attacks

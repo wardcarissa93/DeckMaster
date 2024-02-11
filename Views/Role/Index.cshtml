@@ -27,7 +27,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.RoleName)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -39,9 +38,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.RoleName)
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-roleName="@item.RoleName">Delete</a>
                 </td>
             </tr>
         }
