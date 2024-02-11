@@ -2,6 +2,8 @@
 using DeckMaster.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DeckMaster.Repositories
 {
@@ -12,7 +14,7 @@ namespace DeckMaster.Repositories
         public RoleRepo(ApplicationDbContext context)
         {
             this._context = context;
-            CreateInitialRole();
+            CreateInitialRole(); // Moved inside the constructor to ensure initialization
         }
 
         public IEnumerable<RoleVM> GetAllRoles()
@@ -76,7 +78,7 @@ namespace DeckMaster.Repositories
 
         public bool DeleteRole(string roleName)
         {
-            var role = _context.Roles.FirstOrDefault(r =>r.Name == roleName);
+            var role = _context.Roles.FirstOrDefault(r => r.Name == roleName);
 
             if (role == null)
             {

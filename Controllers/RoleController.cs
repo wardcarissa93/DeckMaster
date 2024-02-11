@@ -3,6 +3,7 @@ using DeckMaster.Repositories;
 using DeckMaster.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace DeckMaster.Controllers
 {
@@ -30,6 +31,7 @@ namespace DeckMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken] // Added for CSRF protection
         public ActionResult Create(RoleVM roleVM)
         {
             if (ModelState.IsValid)
@@ -40,7 +42,7 @@ namespace DeckMaster.Controllers
 
                 if (isSuccess)
                 {
-                    return RedirectToAction(nameof(Index), new { message = "Role created successfully." });                    
+                    return RedirectToAction(nameof(Index), new { message = "Role created successfully." });
                 }
                 else
                 {
@@ -65,6 +67,7 @@ namespace DeckMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken] // Added for CSRF protection
         public ActionResult Delete(RoleVM roleVM)
         {
             RoleRepo roleRepo = new RoleRepo(_context);
