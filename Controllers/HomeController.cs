@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SQLitePCL;
 using System.Diagnostics;
+using System.Web;
 
 namespace DeckMaster.Controllers
 {
@@ -32,7 +33,7 @@ namespace DeckMaster.Controllers
             // Get the current user's email
             string userEmail = User.Identity.Name;
             // Get and store the user's first name in session
-            string firstName = _myRegisteredUserRepo.GetFirstNameByEmail(userEmail);
+            string firstName = _myRegisteredUserRepo.GetFirstNameByEmail(HttpUtility.HtmlEncode(userEmail)); // Encoded user input
             if (firstName != null)
             {
                 HttpContext.Session.SetString("FirstName", firstName);

@@ -1,5 +1,6 @@
 ﻿using DeckMaster.Data;
 using DeckMaster.Models;
+using System.Web;
 
 namespace DeckMaster.Repositories
 {
@@ -24,14 +25,14 @@ namespace DeckMaster.Repositories
                                .Where(u => u.Email == email)
                                .FirstOrDefault();
 
-            return user?.FirstName + " " + user?.LastName;
+            return HttpUtility.HtmlEncode(user?.FirstName + " " + user?.LastName); // Encoded output
         }
 
         // Get the first name of a client by email
         public string GetFirstNameByEmail(string email)
         {
             var user = _context.MyRegisteredUsers.FirstOrDefault(u => u.Email == email);
-            return user?.FirstName;
+            return HttpUtility.HtmlEncode(user?.FirstName); // Encoded output
         }
     }
 }
