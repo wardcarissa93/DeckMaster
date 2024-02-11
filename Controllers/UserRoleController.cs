@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DeckMaster.Controllers
@@ -56,6 +55,7 @@ namespace DeckMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken] // Added for CSRF protection
         public async Task<IActionResult> Create(UserRoleVM userRoleVM)
         {
             UserRoleRepo userRoleRepo = new UserRoleRepo(_userManager, _context);
@@ -83,6 +83,7 @@ namespace DeckMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken] // Added for CSRF protection
         public async Task<IActionResult> Delete(UserRoleVM userRoleVM)
         {
             UserRoleRepo userRoleRepo = new UserRoleRepo(_userManager, _context);
@@ -94,7 +95,7 @@ namespace DeckMaster.Controllers
             ViewBag.Message = result.Success ? "UserRole removed successfully." : result.ErrorMessage;
             ViewBag.UserName = userRoleVM.Email;
 
-            return View("Detail", roles);
+            return View("Detail", roles); // Ensure the correct view is returned
         }
     }
 }

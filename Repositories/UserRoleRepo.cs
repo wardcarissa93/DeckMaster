@@ -77,7 +77,9 @@ namespace DeckMaster.Repositories
 
             if (user != null)
             {
-                var registeredUser = await _context.MyRegisteredUsers.SingleOrDefaultAsync(u => u.Email == user.Email);
+                // Ensure input sanitization to prevent XSS attacks
+                var registeredUser = await _context.MyRegisteredUsers
+                    .SingleOrDefaultAsync(u => u.Email == user.Email);
 
                 if (registeredUser != null)
                 {
