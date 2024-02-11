@@ -1,5 +1,7 @@
 ﻿using DeckMaster.Data;
 using DeckMaster.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DeckMaster.Repositories
 {
@@ -9,20 +11,13 @@ namespace DeckMaster.Repositories
 
         public ProductRepo(ApplicationDbContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return _context.Products.Select(p => new Product 
-                            { 
-                                ID = p.ID, 
-                                ProductName = p.ProductName,
-                                Description = p.Description,
-                                Price = p.Price,
-                                Currency = p.Currency,
-                                ImageName = p.ImageName
-                            });
+            // Encapsulate data access logic within the repository
+            return _context.Products.ToList(); // Execute the query immediately to prevent delayed execution with potential SQL injection
         }
     }
 }

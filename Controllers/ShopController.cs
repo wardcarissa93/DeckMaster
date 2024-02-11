@@ -3,8 +3,8 @@ using DeckMaster.Models;
 using DeckMaster.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SQLitePCL;
-using System.Diagnostics;
+using Microsoft.Extensions.Configuration; // Added
+using System;
 
 namespace DeckMaster.Controllers
 {
@@ -12,12 +12,15 @@ namespace DeckMaster.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ShopController> _logger;
 
         public ShopController(ApplicationDbContext context,
-                              IConfiguration configuration)
+                              IConfiguration configuration,
+                              ILogger<ShopController> logger)
         {
             _context = context;
             _configuration = configuration;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -29,8 +32,16 @@ namespace DeckMaster.Controllers
             return View(productRepo.GetAllProducts());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken] // Added for CSRF protection
         public IActionResult IPN(IPN IPN)
         {
+            // Validate model state to prevent overposting attacks
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             // Get the current date and time as a string
             DateTime currentDateTime = DateTime.Now;
             string currentTime = currentDateTime.ToString("dd/MM/yyyy, HH:mm", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
@@ -48,7 +59,7 @@ namespace DeckMaster.Controllers
                 payerFirstName = IPN.payerFirstName,
                 payerLastName = IPN.payerLastName,
                 payerMiddleName = IPN.payerMiddleName,
-                payerEmail = userEmail,
+                payerEmail = userEmail, // Assign user email directly
                 payerCountryCode = IPN.payerCountryCode,
                 payerStatus = IPN.payerStatus,
                 amount = IPN.amount,
@@ -66,14 +77,13 @@ namespace DeckMaster.Controllers
             }
             catch (Exception ex)
             {
-                // Handle the exception as needed
-                // For simplicity, just rethrow the exception for now
-                throw ex;
+                // Log the exception and return an error response
+                _logger.LogError(ex, "Failed to save IPN to the database.");
+                return StatusCode(500, "Internal Server Error");
             }
 
             // Return the view with the newly created IPN object
             return View(newIPN);
         }
-
     }
 }
