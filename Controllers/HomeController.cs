@@ -38,6 +38,8 @@ namespace DeckMaster.Controllers
                 HttpContext.Session.SetString("FirstName", firstName);
             }
 
+            var pepper = _configuration["pepper"];
+            var connectionString = _configuration["ConnectionStrings:DefaultConnection"];
 
             return View("Index", "3.55|CAD");
         }

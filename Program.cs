@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var pepper = builder.Configuration["pepper"];
 var adminUserName = builder.Configuration["AdminLogin:Username"];
 var adminPassword = builder.Configuration["AdminLogin:Password"];
 var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];

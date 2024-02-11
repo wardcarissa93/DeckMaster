@@ -17,10 +17,13 @@ namespace DeckMaster.Areas.Identity.Pages.Account
     public class ResetPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IConfiguration _configuration;
 
-        public ResetPasswordModel(UserManager<IdentityUser> userManager)
+        public ResetPasswordModel(UserManager<IdentityUser> userManager,
+                                  IConfiguration configuration)
         {
             _userManager = userManager;
+            _configuration = configuration;
         }
 
         /// <summary>
